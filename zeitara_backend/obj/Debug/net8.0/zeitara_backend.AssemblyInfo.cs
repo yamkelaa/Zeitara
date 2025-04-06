@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("zeitara_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02925f94eb909e229e62039ef1dcb9c45f49b664")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74d100cd773347db834dd52d8ce25061674e5b39")]
 [assembly: System.Reflection.AssemblyProductAttribute("zeitara_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("zeitara_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

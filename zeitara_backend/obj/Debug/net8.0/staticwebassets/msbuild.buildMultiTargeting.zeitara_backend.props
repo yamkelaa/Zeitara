@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\zeitara_backend.props" />
+</Project>
