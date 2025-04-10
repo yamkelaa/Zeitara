@@ -1,4 +1,5 @@
 ﻿using Application.DTO.Request;
+using Application.DTO.Response;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 public class UserController(IUserLogic _userLogic) : ControllerBase
 {
     [HttpPost]
+    [Route("Login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestDto loginDto)
     {
         var result = await _userLogic.Login(loginDto);
@@ -14,6 +16,6 @@ public class UserController(IUserLogic _userLogic) : ControllerBase
         {
             return Unauthorized();
         }
-        return Ok(result);
+        return Ok(new ApiResponse<LoginResponseDto>(result));
     }
 }

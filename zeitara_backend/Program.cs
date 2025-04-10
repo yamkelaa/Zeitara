@@ -9,19 +9,26 @@ namespace zeitara_backend
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                                  });
+            });
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddInfrastrcuture(builder.Configuration);
 
-
-
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -30,8 +37,9 @@ namespace zeitara_backend
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins); 
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

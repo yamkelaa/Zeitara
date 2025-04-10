@@ -2,7 +2,7 @@
   {
     "ContainingType": "UserController",
     "Method": "Login",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

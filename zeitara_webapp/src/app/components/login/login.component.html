@@ -1,31 +1,70 @@
 <section class="flex flex-col p-4 m-2 w-fit">
+  <p-toast></p-toast>
+
   <h1 class="text-6xl font-bold mb-4">
-    Zeitara<span
+    Zeitara
+    <span
       class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
-      >AI</span
     >
+      AI
+    </span>
     Shopping
   </h1>
+
   <h2 class="text-4xl font-bold mb-4">Shopping Made Convenient</h2>
 
-  <section class="flex flex-col gap-2">
-    <label for="username">Username: </label>
-    <input
-      pInputText
-      id="username"
-      formControlName="username"
-      autocomplete="off"
-    />
-  </section>
+  <form
+    [formGroup]="userLoginForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col gap-4"
+  >
+    <section class="flex flex-col gap-2">
+      <label for="username">Username:</label>
+      <input
+        pInputText
+        id="username"
+        formControlName="username"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid  text-red-400':
+            username?.invalid && (username?.dirty || username?.touched)
+        }"
+      />
+      <small
+        *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+        class="p-error text-red-400"
+      >
+        Username is required.
+      </small>
+    </section>
 
-  <section class="flex flex-col gap-2">
-    <label for="password">Password</label>
-    <input
-      pInputText
-      id="username"
-      formControlName="password"
-      type="password"
-      autocomplete="off"
-    />
-  </section>
+    <section class="flex flex-col gap-2">
+      <label for="password">Password:</label>
+      <input
+        pInputText
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid  text-red-400':
+            password?.invalid && (password?.dirty || password?.touched)
+        }"
+      />
+      <small
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="p-error text-red-400"
+      >
+        Password is required.
+      </small>
+    </section>
+
+    <button
+      pButton
+      type="submit"
+      label="Login"
+      class="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+      [disabled]="userLoginForm.invalid"
+    ></button>
+  </form>
 </section>
