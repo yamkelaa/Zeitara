@@ -8,6 +8,7 @@ import { UserLogin } from '../../shared/models/user/user';
 import { ResponseDto } from '../../shared/models/response/response';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api'; // For toast notifications
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,10 @@ import { MessageService } from 'primeng/api'; // For toast notifications
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    RouterModule
   ],
-  providers: [MessageService], // Provide MessageService for toast notifications
+  providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private messageService: MessageService // Inject MessageService
+    private readonly messageService: MessageService // Inject MessageService
   ) { }
 
   ngOnInit(): void {

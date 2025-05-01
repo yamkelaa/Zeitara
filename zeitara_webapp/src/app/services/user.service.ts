@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { UserLogin } from "../shared/models/user/user";
+import { UserLogin, UserRegistrationRequestDto, UserRegistrationResponse } from "../shared/models/user/user";
 import { Observable } from "rxjs";
 import { ResponseDto } from "../shared/models/response/response";
 
@@ -19,4 +19,11 @@ export class UserService {
     const loginUrl = `${this.apiUrl}/User/Login`;
     return this.http.post<ResponseDto<UserLogin>>(loginUrl, user);
   }
+
+  registerUser(registrationDetails: UserRegistrationRequestDto): Observable<ResponseDto<UserRegistrationResponse>> {
+    const registrationUrl = `${this.apiUrl}/User/Register`
+    return this.http.post<ResponseDto<UserRegistrationResponse>>(registrationUrl, registrationDetails)
+  }
+
+
 }

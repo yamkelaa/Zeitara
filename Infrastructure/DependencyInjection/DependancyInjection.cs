@@ -23,6 +23,7 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IAppDBContext>(provider => provider.GetRequiredService<AppDbContext>());
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserLogic, UserLogic>();
+            services.AddScoped<IFashionProductLogic, FashionProductLogic>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             return services;

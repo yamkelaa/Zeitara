@@ -1,0 +1,362 @@
+<section class="flex flex-col p-6 m-2 w-fit gap-2">
+  <p-toast></p-toast>
+
+  <h1 class="text-4xl font-bold mb-4">
+    Zeitara
+    <span
+      class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
+    >
+      AI
+    </span>
+    Shopping
+  </h1>
+
+  <h2 class="text-4xl font-bold mb-4">Shopping Made Convenient</h2>
+
+  <form
+    [formGroup]="userRegistrationForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col gap-4"
+  >
+    <!-- Username Field -->
+    <section class="flex flex-col gap-2">
+      <label for="username">Username:</label>
+      <input
+        pInputText
+        id="username"
+        formControlName="username"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('username')?.invalid &&
+            (userRegistrationForm.get('username')?.dirty ||
+              userRegistrationForm.get('username')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('username')?.invalid &&
+          (userRegistrationForm.get('username')?.dirty ||
+            userRegistrationForm.get('username')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Username is required.
+      </small>
+    </section>
+
+    <!-- First Name Field -->
+    <section class="flex flex-col gap-2">
+      <label for="user_FirstName">First Name:</label>
+      <input
+        pInputText
+        id="user_FirstName"
+        formControlName="user_FirstName"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('user_FirstName')?.invalid &&
+            (userRegistrationForm.get('user_FirstName')?.dirty ||
+              userRegistrationForm.get('user_FirstName')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('user_FirstName')?.invalid &&
+          (userRegistrationForm.get('user_FirstName')?.dirty ||
+            userRegistrationForm.get('user_FirstName')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        First name is required.
+      </small>
+    </section>
+
+    <!-- Last Name Field -->
+    <section class="flex flex-col gap-2">
+      <label for="user_LastName">Last Name:</label>
+      <input
+        pInputText
+        id="user_LastName"
+        formControlName="user_LastName"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('user_LastName')?.invalid &&
+            (userRegistrationForm.get('user_LastName')?.dirty ||
+              userRegistrationForm.get('user_LastName')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('user_LastName')?.invalid &&
+          (userRegistrationForm.get('user_LastName')?.dirty ||
+            userRegistrationForm.get('user_LastName')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Last name is required.
+      </small>
+    </section>
+
+    <!-- Password Field -->
+    <section class="flex flex-col gap-2">
+      <label for="password">Password:</label>
+      <input
+        pInputText
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('password')?.invalid &&
+            (userRegistrationForm.get('password')?.dirty ||
+              userRegistrationForm.get('password')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('password')?.invalid &&
+          (userRegistrationForm.get('password')?.dirty ||
+            userRegistrationForm.get('password')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Password is required and it must contain 6 or more characters
+      </small>
+    </section>
+
+    <!-- Age Field -->
+    <section class="flex flex-col gap-2">
+      <label for="age">Age:</label>
+      <input
+        pInputText
+        id="age"
+        formControlName="age"
+        type="number"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('age')?.invalid &&
+            (userRegistrationForm.get('age')?.dirty ||
+              userRegistrationForm.get('age')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('age')?.invalid &&
+          (userRegistrationForm.get('age')?.dirty ||
+            userRegistrationForm.get('age')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Age is required and must be a positive number.
+      </small>
+    </section>
+
+    <!-- Gender Field -->
+    <section class="flex flex-col gap-2">
+      <label for="gender">Gender:</label>
+      <p-autoComplete
+        inputId="gender"
+        formControlName="gender"
+        [dropdown]="true"
+        [suggestions]="genderOptions"
+        [forceSelection]="true"
+        (completeMethod)="search($event)"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('gender')?.invalid &&
+            (userRegistrationForm.get('gender')?.dirty ||
+              userRegistrationForm.get('gender')?.touched)
+        }"
+        placeholder="Select Gender"
+      ></p-autoComplete>
+
+      <small
+        *ngIf="
+          userRegistrationForm.get('gender')?.invalid &&
+          (userRegistrationForm.get('gender')?.dirty ||
+            userRegistrationForm.get('gender')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Gender is required.
+      </small>
+    </section>
+
+    <!-- Address Fields -->
+    <section class="flex flex-col gap-2">
+      <label for="street">Street:</label>
+      <input
+        pInputText
+        id="street"
+        formControlName="street"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('street')?.invalid &&
+            (userRegistrationForm.get('street')?.dirty ||
+              userRegistrationForm.get('street')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('street')?.invalid &&
+          (userRegistrationForm.get('street')?.dirty ||
+            userRegistrationForm.get('street')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Street is required.
+      </small>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label for="suburb">Suburb:</label>
+      <input
+        pInputText
+        id="suburb"
+        formControlName="suburb"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('suburb')?.invalid &&
+            (userRegistrationForm.get('suburb')?.dirty ||
+              userRegistrationForm.get('suburb')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('suburb')?.invalid &&
+          (userRegistrationForm.get('suburb')?.dirty ||
+            userRegistrationForm.get('suburb')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Suburb is required.
+      </small>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label for="province">Province:</label>
+      <input
+        pInputText
+        id="province"
+        formControlName="province"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('province')?.invalid &&
+            (userRegistrationForm.get('province')?.dirty ||
+              userRegistrationForm.get('province')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('province')?.invalid &&
+          (userRegistrationForm.get('province')?.dirty ||
+            userRegistrationForm.get('province')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Province is required.
+      </small>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label for="postal_Code">Postal Code:</label>
+      <input
+        pInputText
+        id="postal_Code"
+        formControlName="postal_Code"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('postal_Code')?.invalid &&
+            (userRegistrationForm.get('postal_Code')?.dirty ||
+              userRegistrationForm.get('postal_Code')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('postal_Code')?.invalid &&
+          (userRegistrationForm.get('postal_Code')?.dirty ||
+            userRegistrationForm.get('postal_Code')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Postal code is required and must be 4 or less characters
+      </small>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label for="city">City:</label>
+      <input
+        pInputText
+        id="city"
+        formControlName="city"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('city')?.invalid &&
+            (userRegistrationForm.get('city')?.dirty ||
+              userRegistrationForm.get('city')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('city')?.invalid &&
+          (userRegistrationForm.get('city')?.dirty ||
+            userRegistrationForm.get('city')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        City is required.
+      </small>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label for="country">Country:</label>
+      <input
+        pInputText
+        id="country"
+        formControlName="country"
+        autocomplete="off"
+        [ngClass]="{
+          'p-invalid text-red-400':
+            userRegistrationForm.get('country')?.invalid &&
+            (userRegistrationForm.get('country')?.dirty ||
+              userRegistrationForm.get('country')?.touched)
+        }"
+      />
+      <small
+        *ngIf="
+          userRegistrationForm.get('country')?.invalid &&
+          (userRegistrationForm.get('country')?.dirty ||
+            userRegistrationForm.get('country')?.touched)
+        "
+        class="p-error text-red-400"
+      >
+        Country is required.
+      </small>
+    </section>
+
+    <!-- Submit Button -->
+    <button
+      pButton
+      type="submit"
+      label="Register"
+      class="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+      [disabled]="userRegistrationForm.invalid"
+    ></button>
+  </form>
+
+  <!-- Link to Login Page -->
+  <section>
+    <p class="justify-self-center">
+      Already have an account?
+      <a [routerLink]="''" class="text-green-400 underline">Login Here</a>
+    </p>
+  </section>
+</section>

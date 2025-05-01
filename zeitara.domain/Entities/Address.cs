@@ -10,6 +10,5 @@ public class Address
     public required string Postal_Code { get; set; }
     public required string City { get; set; }
     public required string Country { get; set; }
-    public required User User { get; set; }
 
 }

@@ -18,4 +18,13 @@ public class UserController(IUserLogic _userLogic) : ControllerBase
         }
         return Ok(new ApiResponse<LoginResponseDto>(result));
     }
+
+    [HttpPost]
+    [Route("Register")]
+    public async Task<IActionResult> Register([FromBody] RegistrationRequestDto registrationDto)
+    {
+        var result = await _userLogic.Register(registrationDto);
+        return Ok(new ApiResponse<RegistrationResponseDto>(result));
+    }
+
 }

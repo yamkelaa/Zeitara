@@ -1,9 +1,64 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿## Build results
+bin/
+obj/
+out/
 
-/zeitara_backend/.vs/zeitara_backend/FileContentIndex/b886dddc-d351-40e8-bd60-903271ed4736.vsidx
-/zeitara_backend/.vs/zeitara_backend/v17/.suo
-/zeitara_backend/.vs/zeitara_backend/v17/DocumentLayout.json
-/zeitara_backend/.vs/zeitara_backend/FileContentIndex
-/zeitara_backend/.vs
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code
+.vscode/
+
+## Rider
+.idea/
+
+## ASP.NET
+*.dbmdl
+*.log
+*.vspscc
+*.vssscc
+
+## Entity Framework
+Migrations/
+
+## Runtime-generated files
+*.pidb
+*.cache
+*.pdb
+*.mdb
+
+## Package directories
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+
+## dotnet CLI
+project.assets.json
+project.lock.json
+artifacts/
+
+## Visual Studio
+.vs/
+
+## Logs
+*.log
+
+## Secrets
+secrets.json
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+## Publish
+publish/
