@@ -1,5 +1,4 @@
-﻿using Application.DTO.Request;
-using Application.DTO.Response;
+﻿using Application.DTO.Response;
 using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -15,28 +14,34 @@ namespace Application.Logic
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<InteractionResponseDto> MakePurchaseAsync(PurchaseRequestDto request)
+        public async Task<InteractionResponseDto> PurchaseAllCartItemsAsync(int userId)
         {
-            var productExists = await _unitOfWork.FashionProducts
-               .GetQueryable()
-               .AnyAsync(p => p.Id == request.ProductId);
+            var cartItems = await _unitOfWork.CartItems
+                .GetQueryable()
+                .Where(c => c.UserId == userId)
+                .ToListAsync();
 
-            if (!productExists)
-                return new InteractionResponseDto("Product not found.");
-
-            var purchase = new Purchase
+            if (!cartItems.Any())
             {
-                UserId = request.UserId,
-                ProductId = request.ProductId,
-                Quantity = request.Quantity,
+                return new InteractionResponseDto("Your cart is empty.");
+            }
+
+            var purchases = cartItems.Select(cartItem => new Purchase
+            {
+                UserId = userId,
+                ProductId = cartItem.ProductId,
+                Quantity = cartItem.Quantity,
                 Status = "Completed",
                 PurchaseDate = DateTime.UtcNow
-            };
+            }).ToList();
 
-            await _unitOfWork.Purchases.AddAsync(purchase);
+            await _unitOfWork.Purchases.AddRangeAsync(purchases);
+
+            _unitOfWork.CartItems.RemoveRange(cartItems);
+
             await _unitOfWork.SaveChangesAsync();
 
-            return new InteractionResponseDto("Purchase completed successfully.");
+            return new InteractionResponseDto($"Successfully purchased {cartItems.Count} items.");
         }
 
         public async Task<IEnumerable<PurchaseResponseDto>> GetUserPurchasesChunkAsync(int userId, int pageSize, int lastLoadedId = 0)

@@ -222,14 +222,14 @@
   {
     "ContainingType": "PurchaseController",
     "Method": "MakePurchase",
-    "RelativePath": "api/Purchase",
+    "RelativePath": "api/Purchase/{userId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "Application.DTO.Request.PurchaseRequestDto",
+        "Name": "userId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

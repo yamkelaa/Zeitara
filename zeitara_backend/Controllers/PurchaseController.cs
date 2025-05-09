@@ -1,18 +1,17 @@
-﻿using Application.DTO.Request;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
 public class PurchaseController(IPurchaseLogic _purchaseLogic) : ControllerBase
 {
-    [HttpPost]
-    public async Task<IActionResult> MakePurchase([FromBody] PurchaseRequestDto request)
+    [HttpPost("{userId}")]
+    public async Task<IActionResult> MakePurchase(int userId)
     {
-        if (request == null || request.UserId <= 0 || request.ProductId <= 0 || request.Quantity <= 0)
-            return BadRequest("Invalid purchase data.");
 
-        var result = await _purchaseLogic.MakePurchaseAsync(request);
+        if (userId <= 0)
+            return BadRequest("Invalid user ID.");
+        var result = await _purchaseLogic.PurchaseAllCartItemsAsync(userId);
         return Ok(result);
     }
 
