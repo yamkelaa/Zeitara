@@ -45,6 +45,11 @@ public class Repository<T> : IRepository<T> where T : class
         _dbSet.Remove(entity);
     }
 
+    public IQueryable<T> GetQueryable()
+    {
+        return _dbSet.AsQueryable();
+    }
+
     public void RemoveRange(IEnumerable<T> entities)
     {
         _dbSet.RemoveRange(entities);

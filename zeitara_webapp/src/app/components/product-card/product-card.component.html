@@ -1,0 +1,58 @@
+<div
+  class="h-full bg-white rounded-lg overflow-hidden border border-gray-200 flex flex-col cursor-pointer hover:shadow-md transition-shadow relative"
+>
+  <!-- Like Button - Top Left Position -->
+  <button
+    (click)="toggleLike($event)"
+    class="absolute top-2 left-2 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm transition-colors shadow-sm hover:shadow-md"
+    [class.text-red-500]="product.isLiked"
+    [class.text-gray-400]="!product.isLiked"
+    [disabled]="isProcessingLike"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      [class.fill-red-500]="product.isLiked"
+      [class.stroke-red-500]="product.isLiked"
+      [class.stroke-gray-400]="!product.isLiked"
+    >
+      <path
+        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+      ></path>
+    </svg>
+  </button>
+
+  <!-- Product Image -->
+  <img
+    [src]="product.imageUrl"
+    [alt]="product.productDisplayName"
+    class="w-full h-48 object-cover"
+    (click)="showDetails()"
+  />
+
+  <!-- Product Details -->
+  <div class="p-4 flex-grow" (click)="showDetails()">
+    <h3 class="font-medium text-gray-900 mb-1 line-clamp-2">
+      {{ product.productDisplayName }}
+    </h3>
+    <div class="flex items-center gap-2 mt-2">
+      <span
+        class="w-3 h-3 rounded-full"
+        [style.backgroundColor]="product.baseColour.toLowerCase()"
+      ></span>
+      <span class="text-sm text-gray-600">{{ product.baseColour }}</span>
+    </div>
+    <div class="mt-2 flex flex-wrap gap-1">
+      <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">
+        {{ product.articleType }}
+      </span>
+    </div>
+  </div>
+</div>

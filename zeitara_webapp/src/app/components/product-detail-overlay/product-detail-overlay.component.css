@@ -1,0 +1,20 @@
+  :host {
+    display: contents;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+  }
+
+  ::ng-deep .p-galleria {
+    height: 100%;
+  }
+
+  ::ng-deep .p-galleria-content {
+    height: 100%;
+  }

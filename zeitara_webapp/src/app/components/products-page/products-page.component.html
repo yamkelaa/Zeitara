@@ -1,0 +1,82 @@
+<!-- product-list.component.html -->
+<!-- Search Bar Section -->
+<div class="flex justify-center mt-8 mb-6">
+  <p-autoComplete
+    [(ngModel)]="searchTerm"
+    [suggestions]="filteredSuggestions"
+    (completeMethod)="filterProducts($event)"
+    field="productDisplayName"
+    placeholder="Search products..."
+    [minLength]="1"
+    (onSelect)="onSuggestionSelected($event)"
+    class="w-full max-w-xl"
+  >
+    <ng-template pTemplate="dropdownicon">
+      <i class="pi pi-search text-gray-500"></i>
+    </ng-template>
+    <ng-template let-product pTemplate="item">
+      <div class="p-2">
+        {{ product.productDisplayName }}
+      </div>
+    </ng-template>
+  </p-autoComplete>
+</div>
+
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <!-- Product Grid -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-4"
+  >
+    <app-product-card
+      *ngIf="selectedProduct"
+      [product]="selectedProduct"
+      class="transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+    ></app-product-card>
+
+    <ng-container *ngIf="!selectedProduct">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+        class="transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      ></app-product-card>
+    </ng-container>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div
+    *ngIf="loading"
+    class="flex flex-col items-center justify-center gap-4 py-8"
+  >
+    <p-progressSpinner
+      styleClass="w-8 h-8"
+      strokeWidth="4"
+      animationDuration=".5s"
+    >
+    </p-progressSpinner>
+    <p class="text-gray-600">Loading products...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div
+    *ngIf="error"
+    class="flex flex-col items-center justify-center gap-4 py-8 text-red-500"
+  >
+    <p>{{ error }}</p>
+    <p-button
+      label="Retry"
+      icon="pi pi-refresh"
+      (onClick)="loadProducts()"
+      styleClass="p-button-sm"
+    >
+    </p-button>
+  </div>
+
+  <!-- End Message -->
+  <div
+    *ngIf="!hasMore && !loading"
+    class="flex flex-col items-center justify-center gap-2 py-8 text-green-500"
+  >
+    <i class="pi pi-check-circle text-3xl"></i>
+    <p class="text-gray-600">You've reached the end</p>
+  </div>
+</div>

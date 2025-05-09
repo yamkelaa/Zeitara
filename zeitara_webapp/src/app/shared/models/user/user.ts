@@ -3,7 +3,18 @@ export interface UserLogin {
   password: string
 }
 
+export interface UserLoginResponse {
+  user_id: number,
+  username: string,
+  password: string
+}
+
 export type Gender = 'male' | 'female' | 'other'
+
+export interface User {
+  userId: number;
+  username: string;
+}
 
 export interface UserRegistrationRequestDto {
   username: string;

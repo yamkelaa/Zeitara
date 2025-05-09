@@ -1,0 +1,29 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.loading-spinner,
+.error-message,
+.end-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px;
+}
+
+
+:host ::ng-deep .p-progress-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+
+  circle {
+    stroke: var(--primary-color);
+  }
+}
+
+.error-message button {
+  margin-top: 10px;
+}

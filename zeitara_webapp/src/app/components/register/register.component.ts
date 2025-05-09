@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,7 +30,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +80,7 @@ export class RegisterComponent implements OnInit {
             summary: 'Registration Successful',
             detail: `User '${data.username}' registered successfully!`,
           });
+          this.router.navigate(['/products']);
         } else {
           this.messageService.add({
             severity: 'error',

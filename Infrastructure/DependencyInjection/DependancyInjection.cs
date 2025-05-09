@@ -24,6 +24,10 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserLogic, UserLogic>();
             services.AddScoped<IFashionProductLogic, FashionProductLogic>();
+            services.AddScoped<ILikeLogic, LikeLogic>();
+            services.AddScoped<ICartLogic, CartLogic>();
+            services.AddScoped<IReviewLogic, ReviewLogic>();
+            services.AddScoped<IPurchaseLogic, PurchaseLogic>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             return services;

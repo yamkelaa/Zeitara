@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "vMdsoAlIeaBnBdnlisDi1DT19RQp31JB5DDls4P4WIN6gDvhB6dB0Vtjhy5CBKUUI0x+05ZQTE122f0NKLviVw==",
+  "dgSpecHash": "Bv68JGnF+Aisy4lxLTgZcKeDno0MZmZhqbFbAGQll4niA/hyptqGx3//JknLAz2tEQDO5FjDVy1OceI0cGWhQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\yamke\\OneDrive\\Desktop\\Honours Courses\\Introduction to AI\\Agent Implementation\\Zeitara\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yamke\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\yamke\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\yamke\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\yamke\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
     "C:\\Users\\yamke\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\yamke\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\yamke\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.6\\microsoft.data.sqlclient.5.1.6.nupkg.sha512",

@@ -13,4 +13,8 @@ public class FashionProductResponseDto
     public string? Usage { get; set; }
     public required string ProductDisplayName { get; set; }
     public required string ImageUrl { get; set; }
+    public bool IsLiked { get; set; }
+    public bool IsInCart { get; set; }
+    public bool IsPurchased { get; set; }
+    public int? UserRating { get; set; }
 }
