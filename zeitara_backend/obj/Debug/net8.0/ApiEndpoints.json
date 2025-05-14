@@ -162,6 +162,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ImagesController",
+    "Method": "GetImage",
+    "RelativePath": "api/Images/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LikeController",
     "Method": "LikeProduct",
     "RelativePath": "api/Like",

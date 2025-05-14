@@ -100,7 +100,7 @@ namespace Application.Logic
                 Status = purchasedItems.Contains(p.Id) ? "Completed" : "Pending",  
                 PurchaseDate = DateTime.UtcNow,
                 ProductDisplayName = p.ProductDisplayName,
-                ImageUrl = $"https://res.cloudinary.com/dluhtovx4/image/upload/fashion-products/{p.Id}",
+                ImageUrl = $"images/{p.Id}.jpg",
                 IsLiked = likedItems.Contains(p.Id),
                 IsInCart = cartItems.Contains(p.Id),
                 IsPurchased = purchasedItems.Contains(p.Id),

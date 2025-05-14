@@ -9,7 +9,7 @@ namespace Application.Logic
     public class FashionProductLogic : IFashionProductLogic
     {
         private readonly IUnitOfWork _unitOfWork;
-        private const string CloudinaryBaseUrl = "https://res.cloudinary.com/dluhtovx4/image/upload/fashion-products/";
+        private const string AssetsBasePath = "images/";
 
         public FashionProductLogic(IUnitOfWork unitOfWork)
         {
@@ -193,7 +193,7 @@ namespace Application.Logic
                 Year = product.Year,
                 Usage = product.Usage ?? string.Empty,
                 ProductDisplayName = product.ProductDisplayName,
-                ImageUrl = $"{CloudinaryBaseUrl}{product.Id}",
+                ImageUrl = $"{AssetsBasePath}{product.Id}",
                 IsLiked = interactionStatus.IsLiked,
                 IsInCart = interactionStatus.IsInCart,
                 IsPurchased = interactionStatus.IsPurchased,

@@ -105,7 +105,7 @@ namespace Application.Logic
                 Year = p.Year,
                 Usage = p.Usage,
                 ProductDisplayName = p.ProductDisplayName,
-                ImageUrl = $"https://res.cloudinary.com/dluhtovx4/image/upload/fashion-products/{p.Id}",
+                ImageUrl = $"images/{p.Id}.jpg",
                 IsLiked = likedProductIds.Contains(p.Id),
                 IsInCart = cartProductIds.Contains(p.Id),
                 IsPurchased = purchasedProductIds.Contains(p.Id),
