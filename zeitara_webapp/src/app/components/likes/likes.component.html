@@ -1,0 +1,80 @@
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <!-- Header with Browse Button -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-200">Your Liked Products</h1>
+    <p-button
+      label="Browse Products"
+      icon="pi pi-arrow-right"
+      (click)="navigateTo('/products')"
+      styleClass="p-button-outlined"
+    ></p-button>
+  </div>
+
+  <!-- Empty State -->
+  <div
+    *ngIf="likedProducts.length === 0 && !loading"
+    class="flex flex-col items-center justify-center py-12 border border-gray-200 rounded-lg"
+  >
+    <i class="pi pi-heart text-4xl text-gray-400 mb-4"></i>
+    <p class="text-gray-600 mb-4">You haven't liked any products yet</p>
+    <p-button
+      label="Browse All Products"
+      icon="pi pi-arrow-right"
+      (click)="navigateTo('/products')"
+      styleClass="p-button-primary"
+    ></p-button>
+  </div>
+
+  <!-- Product Grid -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-4"
+  >
+    <app-product-card
+      *ngFor="let product of likedProducts"
+      [product]="product"
+      class="transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+    ></app-product-card>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div
+    *ngIf="loading"
+    class="flex flex-col items-center justify-center gap-4 py-8"
+  >
+    <p-progressSpinner
+      styleClass="w-8 h-8"
+      strokeWidth="4"
+      animationDuration=".5s"
+    ></p-progressSpinner>
+    <p class="text-gray-600">Loading liked products...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div
+    *ngIf="error"
+    class="flex flex-col items-center justify-center gap-4 py-8 text-red-500"
+  >
+    <p>{{ error }}</p>
+    <p-button
+      label="Retry"
+      icon="pi pi-refresh"
+      (onClick)="loadLikedProducts()"
+      styleClass="p-button-sm"
+    ></p-button>
+  </div>
+
+  <!-- End Message -->
+  <div
+    *ngIf="!hasMore && !loading && likedProducts.length > 0"
+    class="flex flex-col items-center justify-center gap-2 py-8 text-green-500"
+  >
+    <i class="pi pi-check-circle text-3xl"></i>
+    <p class="text-gray-600">You've reached the end</p>
+    <p-button
+      label="Browse More Products"
+      icon="pi pi-arrow-right"
+      (click)="navigateTo('/products')"
+      styleClass="p-button-text mt-2"
+    ></p-button>
+  </div>
+</div>

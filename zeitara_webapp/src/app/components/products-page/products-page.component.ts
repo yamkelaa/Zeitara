@@ -8,12 +8,12 @@ import { ImageModule } from 'primeng/image'; // For better image handling
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Button } from 'primeng/button';
-import { AutoComplete, AutoCompleteSelectEvent } from 'primeng/autocomplete';
+import { AutoCompleteSelectEvent } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-products-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, AutoComplete, TableModule, TagModule, ImageModule, ProductCardComponent, ProgressSpinnerModule, Button], // Added PrimeNG modules
+  imports: [CommonModule, FormsModule, TableModule, TagModule, ImageModule, ProductCardComponent, ProgressSpinnerModule, Button], // Added PrimeNG modules
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.css'
 })

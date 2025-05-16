@@ -143,7 +143,7 @@ public class LikeLogic : ILikeLogic
             Year = p.Year,
             Usage = p.Usage,
             ProductDisplayName = p.ProductDisplayName,
-            ImageUrl = $"https://res.cloudinary.com/dluhtovx4/image/upload/fashion-products/{p.Id}",
+            ImageUrl = $"images/{p.Id}.jpg",
             IsLiked = liked.Contains(p.Id),
             IsInCart = cart.Contains(p.Id),
             IsPurchased = purchased.Contains(p.Id),

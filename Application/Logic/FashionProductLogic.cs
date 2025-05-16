@@ -193,7 +193,7 @@ namespace Application.Logic
                 Year = product.Year,
                 Usage = product.Usage ?? string.Empty,
                 ProductDisplayName = product.ProductDisplayName,
-                ImageUrl = $"{AssetsBasePath}{product.Id}",
+                ImageUrl = $"{AssetsBasePath}{product.Id}.jpg",
                 IsLiked = interactionStatus.IsLiked,
                 IsInCart = interactionStatus.IsInCart,
                 IsPurchased = interactionStatus.IsPurchased,

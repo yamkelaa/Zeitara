@@ -1,42 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Product } from '../shared/models/products/products';
 import { InteractionRequestDto } from '../shared/models/request/interaction-request';
-import { PaginationRequestDto } from '../shared/models/request/pagination-requests';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LikesService {
-  private apiUrl = `${environment.apiUrl}/Like`;
+  private apiUrl = `${environment.apiUrl}/Like`; // Added /api to match backend route
 
   constructor(private http: HttpClient) { }
 
-  likeProduct(productId: number, userId: number): Observable<void> {
-    const request: InteractionRequestDto = { productId, userId };
-    return this.http.post<void>(`${this.apiUrl}`, request);
+  likeProduct(request: InteractionRequestDto): Observable<void> {
+    if (!request || request.userId <= 0 || request.productId <= 0) {
+      throw new Error('Invalid request parameters');
+    }
+    return this.http.post<void>(this.apiUrl, request);
   }
 
-  unlikeProduct(productId: number, userId: number): Observable<void> {
-    const request: InteractionRequestDto = { productId, userId };
-    return this.http.delete<void>(`${this.apiUrl}`, { body: request });
+  unlikeProduct(request: InteractionRequestDto): Observable<void> {
+    if (!request || request.userId <= 0 || request.productId <= 0) {
+      throw new Error('Invalid request parameters');
+    }
+    return this.http.delete<void>(this.apiUrl, { body: request });
   }
 
-  getLikedProducts(
+  getLikedProductsChunk(
     userId: number,
-    pagination: PaginationRequestDto
+    pageSize: number,
+    lastLoadedId: number = 0
   ): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/${userId}`, {
-      params: {
-        pageNumber: pagination.pageNumber.toString(),
-        lastLoadedId: pagination.lastLoadedId?.toString() || ''
-      }
-    });
-  }
+    if (userId <= 0 || pageSize <= 0) {
+      throw new Error('Invalid parameters');
+    }
 
-  checkLikeStatus(userId: number, productIds: number[]): Observable<number[]> {
-    return this.http.post<number[]>(`${this.apiUrl}/status`, { userId, productIds });
+    const params = new HttpParams()
+      .set('pageSize', pageSize.toString())
+      .set('lastLoadedId', lastLoadedId.toString());
+
+    return this.http.get<Product[]>(`${this.apiUrl}/${userId}/chunk`, { params });
   }
 }

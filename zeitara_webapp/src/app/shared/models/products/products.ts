@@ -11,6 +11,10 @@ export interface Product {
   usage: string;
   productDisplayName: string;
   imageUrl: string;
+  isLiked: boolean;
+  isInCart: boolean;
+  isPurchased: boolean;
+  userRating: number | null;
 }
 
 export interface ProductFilters {
@@ -24,10 +28,6 @@ export interface FashionProductSearchRequestDto {
   query: string;
 }
 
-export interface FashionProductWithStatusDto extends Product {
-  isLiked?: boolean;
-  isInCart?: boolean;
-}
 
 
 

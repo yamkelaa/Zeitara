@@ -64,10 +64,14 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(loginData).subscribe({
       next: (response: ResponseDto<UserLoginResponse>) => {
+        console.log('Login response:', response);
         this.userSession.setCurrentUser({
-          userId: response.data.user_id,
+          user_Id: response.data.user_Id,
           username: response.data.username
         });
+
+        console.log('✅ Current user after login:', this.userSession.getCurrentUser());
+
 
         this.messageService.add({
           severity: 'success',
@@ -76,7 +80,9 @@ export class LoginComponent implements OnInit {
           life: 3000
         });
 
-        this.router.navigate(['/products']);
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 3000);
       },
       error: (err) => {
         this.isLoading = false;

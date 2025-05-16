@@ -4,7 +4,7 @@ export interface UserLogin {
 }
 
 export interface UserLoginResponse {
-  user_id: number,
+  user_Id: number,
   username: string,
   password: string
 }
@@ -12,7 +12,7 @@ export interface UserLoginResponse {
 export type Gender = 'male' | 'female' | 'other'
 
 export interface User {
-  userId: number;
+  user_Id: number;
   username: string;
 }
 

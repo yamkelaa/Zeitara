@@ -10,40 +10,30 @@ import { PaginationRequestDto } from '../shared/models/request/pagination-reques
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = `${environment.apiUrl}/Cart`;
+  private apiUrl = `${environment.apiUrl}/api/Cart`; // Note the added /api
 
   constructor(private http: HttpClient) { }
 
   // Add to cart
   addToCart(request: InteractionRequestDto): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}`, request);
+    return this.http.post<void>(this.apiUrl, request);
   }
 
   // Remove from cart
   removeFromCart(request: InteractionRequestDto): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}`, { body: request });
+    return this.http.delete<void>(this.apiUrl, { body: request });
   }
 
   // Get paginated cart items
   getCartItems(
     userId: number,
-    pagination: PaginationRequestDto
-  ): Observable<Product[]> {
+    pageSize: number,
+    lastLoadedId: number = 0
+  ): Observable<Product[]> { // Ensure Product matches FashionProductResponseDto
     const params = new HttpParams()
-      .set('pageNumber', pagination.pageNumber.toString())
-      .set('lastLoadedId', pagination.lastLoadedId?.toString() || '');
+      .set('pageSize', pageSize.toString())
+      .set('lastLoadedId', lastLoadedId.toString());
 
-    return this.http.get<Product[]>(`${this.apiUrl}/${userId}`, { params });
-  }
-
-  // Optional: Check if products are in cart (bulk)
-  checkCartStatus(
-    userId: number,
-    productIds: number[]
-  ): Observable<number[]> {
-    return this.http.post<number[]>(
-      `${this.apiUrl}/status`,
-      { userId, productIds }
-    );
+    return this.http.get<Product[]>(`${this.apiUrl}/${userId}/chunk`, { params });
   }
 }

@@ -1,27 +1,4 @@
 <!-- product-list.component.html -->
-<!-- Search Bar Section -->
-<div class="flex justify-center mt-8 mb-6">
-  <p-autoComplete
-    [(ngModel)]="searchTerm"
-    [suggestions]="filteredSuggestions"
-    (completeMethod)="filterProducts($event)"
-    field="productDisplayName"
-    placeholder="Search products..."
-    [minLength]="1"
-    (onSelect)="onSuggestionSelected($event)"
-    class="w-full max-w-xl"
-  >
-    <ng-template pTemplate="dropdownicon">
-      <i class="pi pi-search text-gray-500"></i>
-    </ng-template>
-    <ng-template let-product pTemplate="item">
-      <div class="p-2">
-        {{ product.productDisplayName }}
-      </div>
-    </ng-template>
-  </p-autoComplete>
-</div>
-
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <!-- Product Grid -->
   <div
